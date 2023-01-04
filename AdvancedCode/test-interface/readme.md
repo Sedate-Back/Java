@@ -13,6 +13,25 @@
   - 要么重写接口的所有抽象方法
   - 要么是抽象类
 
+  实例：
+
+  ```java
+  // 接口
+  	public interface Inter {
+  		public abstract void Study();
+  	}
+  	
+  // 接口的实现
+  	public class InterImpl implements Inter{
+  		@Override
+  		public void Study(){
+  		System.out.println("我应用了Inter");
+  		}
+  	}
+  ```
+
+  
+
 - ps： 接口和类的实现，可以单实现，也可以多实现
 
   - ```java
@@ -23,9 +42,45 @@
 
 - 成员变量
   - 只能是常量
+  
   - 默认修饰符: `public static final` （就算不加在变量前面，也默认加上，而且不能修改）
+  
+  - 实例
+  
+  - ```java
+    // 接口
+    	public interface Inter {
+            int a = 1314;
+    		public abstract void Study();
+    	}
+    // 接口的实现
+    	public class InterImpl implements Inter{
+    		@Override
+    		public void Study(){
+    		System.out.println("我应用了Inter");
+    		}
+    	}
+    
+    // 接口实例化
+    public class testInterImpl {
+        public static void main(String[] args) {
+            InterImpl Impl1 = new InterImpl();
+            Impl1.Study();
+            System.out.println(Impl1.a); 
+            Impl1.a = 520; // 这句话不能被允许
+        }
+    }
+    
+    // 输出结果
+    我应用了接口
+    1314
+    ```
+  
+  - 
+  
 - 构造方法
   - 没有
+  
 - 成员方法
   - 只能是抽象方法
   - 默认修饰符： `public abstract`
@@ -50,13 +105,44 @@
   - 但是可以被重写，重写的时候去掉default关键字
   - public可以省略，default不能省略
   - 如果实现了多个接口，多个接口中存在相同的方法声明，子类就必须对该方法进行重写
+  - 实例：
+  - ```java
+    // 接口
+    public interface Inter {
+        int a = 1314;
+        public abstract void Study();
+    
+        public default void Learn(){
+            System.out.println("因为接口需要，我添加了一些body内容");
+        }
+    }
+    
+    // 接口的实现
+    public class InterImpl implements Inter, InterA {
+        @Override
+        public void Study() {
+            System.out.println(" 我应用了接口");
+        }
+    }
+    
+    // 接口实例化
+    public class testInterImpl {
+        public static void main(String[] args) {
+            InterImpl Impl1 = new InterImpl();
+            Impl1.Study();
+            System.out.println(Impl1.a);
+            Impl1.Learn(); // 直接用被关键字 default修饰的接口的方法
+        }
+    }
+    ```
+  - 
 
 ### 接口的使用思路
 
 - 如果发现一个类中所有的方法都是抽象方法，那么就可以将该类，改进为一个接口
-- 涉及到了接口大面积更新方法，而不想去修改每一个实现类，就可以将更新的方法，定义为带有方法体的默认方法。
+- 涉及到了接口大面积更新方法，而不想去修改每一个实现类，就可以将更新的方法，定义为带有方法体的默认方法（default）。
 - 希望默认方法调用的更加简洁，可以考虑设计为static静态方法。(需要去掉default关键字)
-- 默认方法中出现了重复的代码，可以考虑抽取出一个私有方法。( 需要去掉default关键字)
+- 默认方法中出现了重复的代码，可以考虑抽取出一个私有方法（private）。( 需要去掉default关键字)
 
 
 
