@@ -9,3 +9,8 @@ out ： 输入
 test-abstract ： 自学抽象类及其扩展
 
 test-interface: 自学接口类及其扩展
+
+test-Innerclass ：自学内部类及其扩展
+
+test-polymorphoic：自学多态及其扩展
+
