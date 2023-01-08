@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/note/note.iml" filepath="$PROJECT_DIR$/note/note.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-Innerclass/test-Innerclass.iml" filepath="$PROJECT_DIR$/test-Innerclass/test-Innerclass.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-Lambda/test-Lambda.iml" filepath="$PROJECT_DIR$/test-Lambda/test-Lambda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test-integer/test-integer.iml" filepath="$PROJECT_DIR$/test-integer/test-integer.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-interface/test-interface.iml" filepath="$PROJECT_DIR$/test-interface/test-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-polymorphic/test-polymorphic.iml" filepath="$PROJECT_DIR$/test-polymorphic/test-polymorphic.iml" />
       <module fileurl="file://$PROJECT_DIR$/test_abstract/test_abstract.iml" filepath="$PROJECT_DIR$/test_abstract/test_abstract.iml" />
