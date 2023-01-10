@@ -8,9 +8,21 @@ out ： 输入
 
 test-abstract ： 自学抽象类及其扩展
 
-test-interface: 自学接口类及其扩展
+test-DiGui : Java递归的写法和注意事项
+
+test-Exception： Java异常抛出和异常情况语法
 
 test-Innerclass ：自学内部类及其扩展
+
+test-integer： 数据类型转化方法，包括Int转String String转int及其他
+
+test-interface: 自学接口类及其扩展
+
+test-Lambda： Lambda表达式和其写法拓展
+
+test-MyArrays： Arrays API的用法，排序查询等
+
+test-MyDateTest： Date日期类API的用法和拓展
 
 test-polymorphoic：自学多态及其扩展
 

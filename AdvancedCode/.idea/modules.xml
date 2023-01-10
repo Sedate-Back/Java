@@ -8,9 +8,11 @@
       <module fileurl="file://$PROJECT_DIR$/itheima-edu-info-manager/itheima-edu-info-manager.iml" filepath="$PROJECT_DIR$/itheima-edu-info-manager/itheima-edu-info-manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/note/note.iml" filepath="$PROJECT_DIR$/note/note.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-DiGui/test-DiGui.iml" filepath="$PROJECT_DIR$/test-DiGui/test-DiGui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test-Exception/test-Exception.iml" filepath="$PROJECT_DIR$/test-Exception/test-Exception.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-Innerclass/test-Innerclass.iml" filepath="$PROJECT_DIR$/test-Innerclass/test-Innerclass.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-Lambda/test-Lambda.iml" filepath="$PROJECT_DIR$/test-Lambda/test-Lambda.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-MyArrays/test-MyArrays.iml" filepath="$PROJECT_DIR$/test-MyArrays/test-MyArrays.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test-MyDateTest/test-MyDateTest.iml" filepath="$PROJECT_DIR$/test-MyDateTest/test-MyDateTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-integer/test-integer.iml" filepath="$PROJECT_DIR$/test-integer/test-integer.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-interface/test-interface.iml" filepath="$PROJECT_DIR$/test-interface/test-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-polymorphic/test-polymorphic.iml" filepath="$PROJECT_DIR$/test-polymorphic/test-polymorphic.iml" />
