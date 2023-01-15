@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/test-Innerclass/test-Innerclass.iml" filepath="$PROJECT_DIR$/test-Innerclass/test-Innerclass.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-Lambda/test-Lambda.iml" filepath="$PROJECT_DIR$/test-Lambda/test-Lambda.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-MyArrays/test-MyArrays.iml" filepath="$PROJECT_DIR$/test-MyArrays/test-MyArrays.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test-MyCollection/test-MyCollection.iml" filepath="$PROJECT_DIR$/test-MyCollection/test-MyCollection.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-MyDateTest/test-MyDateTest.iml" filepath="$PROJECT_DIR$/test-MyDateTest/test-MyDateTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-integer/test-integer.iml" filepath="$PROJECT_DIR$/test-integer/test-integer.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-interface/test-interface.iml" filepath="$PROJECT_DIR$/test-interface/test-interface.iml" />
