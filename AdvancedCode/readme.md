@@ -1,4 +1,4 @@
-本文件夹用来记录不同项目文件的内容
+## 本文件夹用来记录不同项目代码及笔记
 
 itheima-edu-info-manager ： 教育管理系统
 
@@ -22,7 +22,11 @@ test-Lambda： Lambda表达式和其写法拓展
 
 test-MyArrays： Arrays API的用法，排序查询等
 
+test-MyCollection:  集合高阶内容，包括List 和 Map等
+
 test-MyDateTest： Date日期类API的用法和拓展
 
 test-polymorphoic：自学多态及其扩展
+
+
 
