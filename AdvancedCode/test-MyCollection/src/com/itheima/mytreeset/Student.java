@@ -6,7 +6,7 @@ public class Student implements Comparable<Student> {
     private int math;
     private int english;
 
-    private Student() {
+    private Student(String zzh, int chinese) {
 
     }
 
