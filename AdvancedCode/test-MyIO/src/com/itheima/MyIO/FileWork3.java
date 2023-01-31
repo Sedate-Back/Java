@@ -51,7 +51,7 @@ public class FileWork3 {
                         count++;
                         //把已经出现的次数给覆盖掉.
                         hm.put(fileEndName,count); // 将后缀和重新计数元素存储到map中
-                    }else{米啊
+                    }else{
                         // 没出现过,将这种类型文件的后缀名存入集合中,次数存1
                         hm.put(fileEndName,1);
                     }
