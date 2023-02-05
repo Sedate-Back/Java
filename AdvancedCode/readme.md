@@ -1,10 +1,12 @@
+# 项目结构说明
+
 ## 本文件夹用来记录不同项目代码及笔记
 
 itheima-edu-info-manager ： 教育管理系统
 
-note ： 记事本
+note ： 记事本（琦琦作业）
 
-out ： 输入
+out ： 输入（Java自运行代码库）
 
 test-abstract ： 自学抽象类及其扩展
 
