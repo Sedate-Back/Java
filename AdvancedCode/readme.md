@@ -28,6 +28,8 @@ test-MyCollection:  集合高阶内容，包括List 、 Map 、 可变参数和�
 
 test-MyDateTest： Date日期类API的用法和拓展
 
+test-MyInternetCode： 网络编程的代码和笔记（UDP和TCP）
+
 test-MyIO： IO流操作（Input &  Output）
 
 test-polymorphoic：自学多态及其扩展
