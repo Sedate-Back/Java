@@ -4,5 +4,6 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="dom4j-1.6.1" level="project" />
   </component>
 </module>
