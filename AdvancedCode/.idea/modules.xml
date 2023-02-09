@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/car/car.iml" filepath="$PROJECT_DIR$/car/car.iml" />
       <module fileurl="file://$PROJECT_DIR$/itheima-edu-info-manager/itheima-edu-info-manager.iml" filepath="$PROJECT_DIR$/itheima-edu-info-manager/itheima-edu-info-manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/note/note.iml" filepath="$PROJECT_DIR$/note/note.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test-Basice-Strengthen/test-Basice-Strengthen.iml" filepath="$PROJECT_DIR$/test-Basice-Strengthen/test-Basice-Strengthen.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-DiGui/test-DiGui.iml" filepath="$PROJECT_DIR$/test-DiGui/test-DiGui.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-Exception/test-Exception.iml" filepath="$PROJECT_DIR$/test-Exception/test-Exception.iml" />
       <module fileurl="file://$PROJECT_DIR$/test-Innerclass/test-Innerclass.iml" filepath="$PROJECT_DIR$/test-Innerclass/test-Innerclass.iml" />
