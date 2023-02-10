@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+1，创建一个文件，这个文件的后缀名为.xsd。
+2，定义文档声明
+3，schema文件的根标签为： <schema>
+4，在<schema>中定义属性：
+    xmlns=http://www.w3.org/2001/XMLSchema
+5，在<schema>中定义属性 ：
+    targetNamespace =唯一的url地址，指定当前这个schema文件的名称空间。
+6，在<schema>中定义属性 ：
+    elementFormDefault="qualified“，表示当前schema文件是一个质量良好的文件。
+7，通过element定义元素
+8，判断当前元素是简单元素还是复杂元素
+-->
+
+<schema
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.itheima.cn/javase"
+    elementFormDefault="qualified"
+>
+    <element name="students">
+        <complexType>
+            <sequence>
+                <element name="student">
+                    <complexType>
+                        <sequence>
+                            <element name = "name" type="string"></element>
+                            <element name = "age" type="string"></element>
+                        </sequence>
+<!--                        在这个地方加入student后面的ID这些属性值的约束-->
+                            <attribute name="id" type="string" use="required">
+
+                            </attribute>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+
+</schema>

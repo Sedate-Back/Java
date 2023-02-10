@@ -11,11 +11,12 @@
 <!--CDATA区也可以用来写内容-->
 <!--   <message><![CDATA[内容]]></message>   -->
 
-<!--引入DTD文件来约束-->
-<!DOCTYPE students SYSTEM "student.dtd">
+<!--引入Schema文件来约束-->
+<students xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://www.itheima.cn/javase"
+          xsi:schemaLocation="http://www.itheima.cn/javase students.xsd"
+>
 
-
-<students>
     <!-- 第一个学生信息-->
     <student id="1">
         <name>张三</name>

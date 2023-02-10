@@ -1,0 +1,12 @@
+<!-- DTD约束xml文件的写法格式 -->
+
+<!ELEMENT students (student+)>
+<!ELEMENT student (name, age)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!--在student后加id标签的话，需要这么设置-->
+<!ATTLIST student id CDATA #REQUIRED>
+
+<!-- #REQUIRED  必须写到XML文件中的 -->
+<!-- #IMPLIED 不是必须的 -->
+<!-- #FIXED value 属性值是固定的 -->
