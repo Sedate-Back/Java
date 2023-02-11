@@ -16,7 +16,7 @@ public class XmlParseDemo1 {
         SAXReader saxReader = new SAXReader();
 
         // 2. 用read方法读取DOM对象的内容
-        Document document = saxReader.read(new File("/Users/sedate/java/java-self-study/AdvancedCode/test-Basice-Strengthen/src/com/itheima/Xmlparse/xml/student.xml"));
+        Document document = saxReader.read(new File("test-Basice-Strengthen/src/com/itheima/Xmlparse/xml/student.xml"));
 
         // 3. 获取DOM对象的第一个根标签 -> students
         Element rootElement = document.getRootElement();
