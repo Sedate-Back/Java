@@ -4,7 +4,7 @@ MySQL高级文档地址，请点击：
 
 ​	
 
-[MySQL高级笔记]: mysql高级.md
+[[MySQL高级笔记]: mysql高级.md](mysql高级.md)
 
 
 
