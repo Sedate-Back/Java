@@ -934,6 +934,12 @@ Java代码操作数据库流程如图所示：
 
 <img src="assets/image-20210725213210091.png" alt="image-20210725213210091" style="zoom:80%;" />
 
+PS：
+
+[配置文件说明点击这里。]: lib/druid配置详解.md(lib/druid配置详解.md)
+
+
+
 编写配置文件如下：
 
 ```properties
@@ -948,6 +954,8 @@ maxActive=10
 # 最大等待时间
 maxWait=3000
 ```
+
+
 
 使用druid的代码如下：
 
