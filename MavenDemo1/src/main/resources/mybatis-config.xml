@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration核心配置文件-->
+<configuration>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+<!--                数据库连接信息-->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql:///javadb1?useSSl=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="1234"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!-- 加载sql映射文件-->
+<!--        <mapper resource="com/itheima/mapper/StuMapper.xml"/>-->
+
+<!--        用Mapper方式加载sql映射文件 : 好处是可以批量添加sql映射文件，项目过大的时候可以避免需要重复添加 -->
+        <package name="com.itheima.mapper"/>
+
+    </mappers>
+</configuration>
