@@ -15,7 +15,7 @@ import java.util.List;
 
 /*
 
-    Mybatis 代理开发 mapper
+    Mybatis 代理开发 mapper 查询所有数据
 
  */
 
@@ -41,4 +41,6 @@ public class MybatisDemo3 {
         sqlSession.close();
 
     }
+
+
 }

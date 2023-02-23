@@ -362,3 +362,39 @@ public class MybatisDemo2 {
 }
 
 ```
+
+
+
+### 4. 基于Mapper来操作数据库
+
+包括增、删、改、查
+
+
+
+#### 1. 第一步：创建数据库数据
+
+这里我们在java_db1创建tb_brand表
+
+
+
+
+
+
+
+#### 2. 根据brand表的对象在pojo包中创建brand实体类
+
+
+
+
+
+#### 3. 在Mapper包中创建brandMapper接口类，并定义增删改查的方法
+
+
+
+
+
+#### 4. 在resource下的mapper包中创建brandMapper配置文件，并根据规则写入statement语句（SQL）
+
+
+
+具体案例看此项目文件！

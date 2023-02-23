@@ -5,9 +5,117 @@
 
 <mapper namespace="com.itheima.mapper.BrandMapper">
 
+    <!-- 因为sql中的列名使用下划线， 而pojo类中用的是驼峰命名，所以导致数据不匹配 -->
+    <!-- 当sql变量与实体类的变量名称不一样时，我们可以用resultMap来定义 -->
+    <!-- 定义好resultMap后，需要将statement的区域设置成resultMap类型 -->
+    <resultMap id="brandResultMap" type="com.itheima.pojo.Brand">
+        <!--
+                id：完成主键字段的映射
+                    column：表的列名
+                    property：实体类的属性名
+                result：完成一般字段的映射
+                    column：表的列名
+                    property：实体类的属性名
+            -->
+        <result column="brand_name" property="brandName"/>
+        <result column="company_name" property="companyName"/>
+    </resultMap>
 
-    <select id="selectAll" resultType="com.itheima.pojo.Brand">
+
+
+    <select id="selectAll" resultMap="brandResultMap">
         select *
         from tb_brand;
     </select>
+
+
+    <!-- 根据ID信息查询数据库中的内容 -->
+    <select id="selectById" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where id = #{id};
+    </select>
+
+    <!-- 根据多条件查询数据-->
+    <select id="selectByCondition" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where status = #{status}
+          and company_Name like #{companyName}
+          and brand_Name like #{brandName};
+
+    </select>
+
+    <!-- 根据单条件查询数据-->
+    <select id="selectSingleByCondition" resultMap="brandResultMap">
+      select *from tb_brand
+        <where>  <!-- 相当于where xxx 用于条件判断 但是如果下面没有条件，where就会消失，使得sql语句能够顺利运行-->
+            <choose>
+                <when test="status != null">
+                    status = #{status}
+                </when>
+                <when test="brandName != null and brandName != '' ">
+                    brand_Name like #{brandName}
+                </when>
+                <when test="companyName != null and companyName != ''">
+                    company_Name like #{companyName}
+                </when>
+            </choose>
+
+        </where>
+
+
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="addAll">
+        insert into tb_brand (brand_name, company_name, ordered, description, status)
+        values (#{brandName}, #{companyName}, #{ordered}, #{description}, #{status});
+    </insert>
+
+    <!-- 添加数据，返回主键的值 -->
+    <insert id="addReturnId" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_brand (brand_name, company_name, ordered, description, status)
+        values (#{brandName}, #{companyName}, #{ordered}, #{description}, #{status});
+    </insert>
+
+
+    <!-- 修改数据 -->
+    <update id="update">
+        update tb_brand
+        <set> <!--  相当于set -->
+            <if test="brandName != null and brandName != ''">
+                brand_name = #{brandName},
+            </if>
+            <if test="companyName != null and companyName != ''">
+                company_name = #{companyName},
+            </if>
+            <if test="ordered != null">
+                ordered = #{ordered},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+    <!-- 根据id删除数据 -->
+    <delete id="deleteById">
+        delete from tb_brand where id = #{id};
+    </delete>
+
+    <!-- 根据多选Id，批量删除数据 -->
+    <delete id="deleteByIds">
+        delete from tb_brand where id
+        in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+        ;
+    </delete>
+
 </mapper>
