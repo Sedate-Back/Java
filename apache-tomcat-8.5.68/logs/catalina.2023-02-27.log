@@ -1,0 +1,91 @@
+27-Feb-2023 09:53:48.314 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Server.服务器版本: Apache Tomcat/8.5.68
+27-Feb-2023 09:53:48.321 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 服务器构建:        Jun 11 2021 13:32:01 UTC
+27-Feb-2023 09:53:48.321 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 服务器版本号:      8.5.68.0
+27-Feb-2023 09:53:48.322 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 操作系统名称:      Windows 10
+27-Feb-2023 09:53:48.322 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log OS.版本:           10.0
+27-Feb-2023 09:53:48.322 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 架构:              amd64
+27-Feb-2023 09:53:48.322 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Java 环境变量:     D:\java\Jave SE17.0
+27-Feb-2023 09:53:48.322 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Java虚拟机版本:    17.0.5+9-LTS-191
+27-Feb-2023 09:53:48.322 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM.供应商:        Oracle Corporation
+27-Feb-2023 09:53:48.323 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:     E:\java\apache-tomcat-8.5.68
+27-Feb-2023 09:53:48.323 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:     E:\java\apache-tomcat-8.5.68
+27-Feb-2023 09:53:48.323 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       --add-opens=java.base/java.lang=ALL-UNNAMED
+27-Feb-2023 09:53:48.323 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       --add-opens=java.base/java.io=ALL-UNNAMED
+27-Feb-2023 09:53:48.323 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       --add-opens=java.base/java.util=ALL-UNNAMED
+27-Feb-2023 09:53:48.323 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+27-Feb-2023 09:53:48.323 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+27-Feb-2023 09:53:48.324 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Djava.util.logging.config.file=E:\java\apache-tomcat-8.5.68\conf\logging.properties
+27-Feb-2023 09:53:48.324 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+27-Feb-2023 09:53:48.324 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Djdk.tls.ephemeralDHKeySize=2048
+27-Feb-2023 09:53:48.324 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+27-Feb-2023 09:53:48.324 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Dignore.endorsed.dirs=
+27-Feb-2023 09:53:48.324 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Dcatalina.base=E:\java\apache-tomcat-8.5.68
+27-Feb-2023 09:53:48.324 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Dcatalina.home=E:\java\apache-tomcat-8.5.68
+27-Feb-2023 09:53:48.325 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Djava.io.tmpdir=E:\java\apache-tomcat-8.5.68\temp
+27-Feb-2023 09:53:48.325 信息 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent 使用APR版本[1.7.0]加载了基于APR的Apache Tomcat本机库[1.2.30]。
+27-Feb-2023 09:53:48.325 信息 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR功能：IPv6[true]、sendfile[true]、accept filters[false]、random[true]。
+27-Feb-2023 09:53:48.325 信息 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL配置：useAprConnector[false]，useOpenSSL[true]
+27-Feb-2023 09:53:48.328 信息 [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL成功初始化 [OpenSSL 1.1.1k  25 Mar 2021]
+27-Feb-2023 09:53:48.471 信息 [main] org.apache.coyote.AbstractProtocol.init 初始化协议处理器 ["http-nio-8080"]
+27-Feb-2023 09:53:48.554 信息 [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+27-Feb-2023 09:53:48.564 信息 [main] org.apache.catalina.startup.Catalina.load Initialization processed in 539 ms
+27-Feb-2023 09:53:48.608 信息 [main] org.apache.catalina.core.StandardService.startInternal 正在启动服务[Catalina]
+27-Feb-2023 09:53:48.608 信息 [main] org.apache.catalina.core.StandardEngine.startInternal 正在启动 Servlet 引擎：[Apache Tomcat/8.5.68]
+27-Feb-2023 09:53:48.658 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 把web 应用程序部署到目录 [E:\java\apache-tomcat-8.5.68\webapps\ROOT]
+27-Feb-2023 09:53:49.322 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Web应用程序目录[E:\java\apache-tomcat-8.5.68\webapps\ROOT]的部署已在[662]毫秒内完成
+27-Feb-2023 09:53:49.325 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 把web 应用程序部署到目录 [E:\java\apache-tomcat-8.5.68\webapps\docs]
+27-Feb-2023 09:53:49.648 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Web应用程序目录[E:\java\apache-tomcat-8.5.68\webapps\docs]的部署已在[323]毫秒内完成
+27-Feb-2023 09:53:49.649 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 把web 应用程序部署到目录 [E:\java\apache-tomcat-8.5.68\webapps\examples]
+27-Feb-2023 09:53:56.711 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Web应用程序目录[E:\java\apache-tomcat-8.5.68\webapps\examples]的部署已在[7,062]毫秒内完成
+27-Feb-2023 09:53:56.713 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 把web 应用程序部署到目录 [E:\java\apache-tomcat-8.5.68\webapps\host-manager]
+27-Feb-2023 09:53:57.078 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Web应用程序目录[E:\java\apache-tomcat-8.5.68\webapps\host-manager]的部署已在[364]毫秒内完成
+27-Feb-2023 09:53:57.079 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 把web 应用程序部署到目录 [E:\java\apache-tomcat-8.5.68\webapps\manager]
+27-Feb-2023 09:53:57.447 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Web应用程序目录[E:\java\apache-tomcat-8.5.68\webapps\manager]的部署已在[367]毫秒内完成
+27-Feb-2023 09:53:57.449 信息 [main] org.apache.coyote.AbstractProtocol.start 开始协议处理句柄["http-nio-8080"]
+27-Feb-2023 09:53:57.459 信息 [main] org.apache.catalina.startup.Catalina.start Server startup in 8894 ms
+27-Feb-2023 09:55:28.782 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Server.服务器版本: Apache Tomcat/8.5.68
+27-Feb-2023 09:55:28.784 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 服务器构建:        Jun 11 2021 13:32:01 UTC
+27-Feb-2023 09:55:28.785 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 服务器版本号:      8.5.68.0
+27-Feb-2023 09:55:28.785 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 操作系统名称:      Windows 10
+27-Feb-2023 09:55:28.785 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log OS.版本:           10.0
+27-Feb-2023 09:55:28.785 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 架构:              amd64
+27-Feb-2023 09:55:28.785 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Java 环境变量:     D:\java\Jave SE17.0
+27-Feb-2023 09:55:28.785 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log Java虚拟机版本:    17.0.5+9-LTS-191
+27-Feb-2023 09:55:28.785 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM.供应商:        Oracle Corporation
+27-Feb-2023 09:55:28.785 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:     E:\java\apache-tomcat-8.5.68
+27-Feb-2023 09:55:28.786 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:     E:\java\apache-tomcat-8.5.68
+27-Feb-2023 09:55:28.786 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       --add-opens=java.base/java.lang=ALL-UNNAMED
+27-Feb-2023 09:55:28.786 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       --add-opens=java.base/java.io=ALL-UNNAMED
+27-Feb-2023 09:55:28.786 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       --add-opens=java.base/java.util=ALL-UNNAMED
+27-Feb-2023 09:55:28.786 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+27-Feb-2023 09:55:28.786 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+27-Feb-2023 09:55:28.786 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Djava.util.logging.config.file=E:\java\apache-tomcat-8.5.68\conf\logging.properties
+27-Feb-2023 09:55:28.787 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+27-Feb-2023 09:55:28.787 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Djdk.tls.ephemeralDHKeySize=2048
+27-Feb-2023 09:55:28.787 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+27-Feb-2023 09:55:28.787 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Dignore.endorsed.dirs=
+27-Feb-2023 09:55:28.788 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Dcatalina.base=E:\java\apache-tomcat-8.5.68
+27-Feb-2023 09:55:28.788 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Dcatalina.home=E:\java\apache-tomcat-8.5.68
+27-Feb-2023 09:55:28.788 信息 [main] org.apache.catalina.startup.VersionLoggerListener.log 命令行参数：       -Djava.io.tmpdir=E:\java\apache-tomcat-8.5.68\temp
+27-Feb-2023 09:55:28.788 信息 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent 使用APR版本[1.7.0]加载了基于APR的Apache Tomcat本机库[1.2.30]。
+27-Feb-2023 09:55:28.788 信息 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR功能：IPv6[true]、sendfile[true]、accept filters[false]、random[true]。
+27-Feb-2023 09:55:28.788 信息 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL配置：useAprConnector[false]，useOpenSSL[true]
+27-Feb-2023 09:55:28.791 信息 [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL成功初始化 [OpenSSL 1.1.1k  25 Mar 2021]
+27-Feb-2023 09:55:28.927 信息 [main] org.apache.coyote.AbstractProtocol.init 初始化协议处理器 ["http-nio-8080"]
+27-Feb-2023 09:55:28.992 信息 [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+27-Feb-2023 09:55:29.000 信息 [main] org.apache.catalina.startup.Catalina.load Initialization processed in 461 ms
+27-Feb-2023 09:55:29.039 信息 [main] org.apache.catalina.core.StandardService.startInternal 正在启动服务[Catalina]
+27-Feb-2023 09:55:29.039 信息 [main] org.apache.catalina.core.StandardEngine.startInternal 正在启动 Servlet 引擎：[Apache Tomcat/8.5.68]
+27-Feb-2023 09:55:29.075 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 把web 应用程序部署到目录 [E:\java\apache-tomcat-8.5.68\webapps\ROOT]
+27-Feb-2023 09:55:29.515 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Web应用程序目录[E:\java\apache-tomcat-8.5.68\webapps\ROOT]的部署已在[439]毫秒内完成
+27-Feb-2023 09:55:29.516 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 把web 应用程序部署到目录 [E:\java\apache-tomcat-8.5.68\webapps\docs]
+27-Feb-2023 09:55:29.788 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Web应用程序目录[E:\java\apache-tomcat-8.5.68\webapps\docs]的部署已在[272]毫秒内完成
+27-Feb-2023 09:55:29.788 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 把web 应用程序部署到目录 [E:\java\apache-tomcat-8.5.68\webapps\examples]
+27-Feb-2023 09:55:36.916 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Web应用程序目录[E:\java\apache-tomcat-8.5.68\webapps\examples]的部署已在[7,128]毫秒内完成
+27-Feb-2023 09:55:36.916 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 把web 应用程序部署到目录 [E:\java\apache-tomcat-8.5.68\webapps\host-manager]
+27-Feb-2023 09:55:37.228 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Web应用程序目录[E:\java\apache-tomcat-8.5.68\webapps\host-manager]的部署已在[312]毫秒内完成
+27-Feb-2023 09:55:37.228 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory 把web 应用程序部署到目录 [E:\java\apache-tomcat-8.5.68\webapps\manager]
+27-Feb-2023 09:55:37.548 信息 [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Web应用程序目录[E:\java\apache-tomcat-8.5.68\webapps\manager]的部署已在[320]毫秒内完成
+27-Feb-2023 09:55:37.550 信息 [main] org.apache.coyote.AbstractProtocol.start 开始协议处理句柄["http-nio-8080"]
+27-Feb-2023 09:55:37.559 信息 [main] org.apache.catalina.startup.Catalina.start Server startup in 8557 ms
+27-Feb-2023 09:56:09.733 严重 [main] org.apache.catalina.startup.Catalina.stopServer Could not contact [localhost:8005]. Tomcat may not be running.
