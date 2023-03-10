@@ -1,6 +1,12 @@
+E:\java\JSPDemo\src\main\java\com\itheima\pojo\User.java
 E:\java\JSPDemo\src\main\java\com\itheima\web\selectAllServlet.java
 E:\java\JSPDemo\src\main\java\com\itheima\service\BrandService.java
+E:\java\JSPDemo\src\main\java\com\itheima\web\selectByIdServlet.java
+E:\java\JSPDemo\src\main\java\com\itheima\web\updateServlet.java
+E:\java\JSPDemo\src\main\java\com\itheima\service\UserService.java
 E:\java\JSPDemo\src\main\java\com\itheima\util\SqlSessionFactoryUtils.java
 E:\java\JSPDemo\src\main\java\com\itheima\pojo\Brand.java
 E:\java\JSPDemo\src\main\java\com\itheima\web\addAllServlet.java
 E:\java\JSPDemo\src\main\java\com\itheima\mapper\BrandMapper.java
+E:\java\JSPDemo\src\main\java\com\itheima\mapper\UserMapper.java
+E:\java\JSPDemo\src\main\java\com\itheima\web\loginServlet.java

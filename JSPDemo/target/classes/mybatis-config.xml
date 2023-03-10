@@ -21,7 +21,7 @@
         </environment>
     </environments>
     <mappers>
-        <!-- 当mysql的表头和pojo实体类的表头不一致时，需要用到 -->
+
         <!--扫描mapper-->
         <package name="com.itheima.mapper"/>
     </mappers>

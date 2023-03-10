@@ -951,3 +951,820 @@
 至此，代码部分全部编写完毕。
 
 run起来就可以通过页面的访问来操作数据库了。
+
+
+
+----------
+
+3/10开发新功能：
+
+### 根据Session、Cookies，实现登录、注册小案例
+
+- 分别的功能点：
+  - Cookies：登录中新增记住我勾选框，在登录成功后，下次前往登录界面会自动填充
+  - Session：注册的时候，将页面的验证码答案写在Session里，用户提交数据后，根据Session的验证码的值进行校验
+
+
+
+#### 案例准备
+
+- **验证码插件引用**
+
+  - 将`CheckCodeUtil`放在Utils目录下
+
+  - `CheckCodeUtil`： 主要是用来生成随机字符串的功能插件，生成对应的图像和答案
+
+  - ```java
+    package com.itheima.util;
+    
+    import javax.imageio.ImageIO;
+    import java.awt.*;
+    import java.awt.geom.AffineTransform;
+    import java.awt.image.BufferedImage;
+    import java.io.File;
+    import java.io.FileOutputStream;
+    import java.io.IOException;
+    import java.io.OutputStream;
+    import java.util.Arrays;
+    import java.util.Random;
+    
+    /**
+     * 生成验证码工具类
+     */
+    public class CheckCodeUtil {
+    
+        public static final String VERIFY_CODES = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private static Random random = new Random();
+    
+    
+    
+        /**
+         * 输出随机验证码图片流,并返回验证码值（一般传入输出流，响应response页面端，Web项目用的较多）
+         *
+         * @param w
+         * @param h
+         * @param os
+         * @param verifySize
+         * @return
+         * @throws IOException
+         */
+        public static String outputVerifyImage(int w, int h, OutputStream os, int verifySize) throws IOException {
+            String verifyCode = generateVerifyCode(verifySize);
+            outputImage(w, h, os, verifyCode);
+            return verifyCode;
+        }
+    
+        /**
+         * 使用系统默认字符源生成验证码
+         *
+         * @param verifySize 验证码长度
+         * @return
+         */
+        public static String generateVerifyCode(int verifySize) {
+            return generateVerifyCode(verifySize, VERIFY_CODES);
+        }
+    
+        /**
+         * 使用指定源生成验证码
+         *
+         * @param verifySize 验证码长度
+         * @param sources    验证码字符源
+         * @return
+         */
+        public static String generateVerifyCode(int verifySize, String sources) {
+            // 未设定展示源的字码，赋默认值大写字母+数字
+            if (sources == null || sources.length() == 0) {
+                sources = VERIFY_CODES;
+            }
+            int codesLen = sources.length();
+            Random rand = new Random(System.currentTimeMillis());
+            StringBuilder verifyCode = new StringBuilder(verifySize);
+            for (int i = 0; i < verifySize; i++) {
+                verifyCode.append(sources.charAt(rand.nextInt(codesLen - 1)));
+            }
+            return verifyCode.toString();
+        }
+    
+        /**
+         * 生成随机验证码文件,并返回验证码值 (生成图片形式，用的较少)
+         *
+         * @param w
+         * @param h
+         * @param outputFile
+         * @param verifySize
+         * @return
+         * @throws IOException
+         */
+        public static String outputVerifyImage(int w, int h, File outputFile, int verifySize) throws IOException {
+            String verifyCode = generateVerifyCode(verifySize);
+            outputImage(w, h, outputFile, verifyCode);
+            return verifyCode;
+        }
+    
+    
+    
+        /**
+         * 生成指定验证码图像文件
+         *
+         * @param w
+         * @param h
+         * @param outputFile
+         * @param code
+         * @throws IOException
+         */
+        public static void outputImage(int w, int h, File outputFile, String code) throws IOException {
+            if (outputFile == null) {
+                return;
+            }
+            File dir = outputFile.getParentFile();
+            //文件不存在
+            if (!dir.exists()) {
+                //创建
+                dir.mkdirs();
+            }
+            try {
+                outputFile.createNewFile();
+                FileOutputStream fos = new FileOutputStream(outputFile);
+                outputImage(w, h, fos, code);
+                fos.close();
+            } catch (IOException e) {
+                throw e;
+            }
+        }
+    
+        /**
+         * 输出指定验证码图片流
+         *
+         * @param w
+         * @param h
+         * @param os
+         * @param code
+         * @throws IOException
+         */
+        public static void outputImage(int w, int h, OutputStream os, String code) throws IOException {
+            int verifySize = code.length();
+            BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+            Random rand = new Random();
+            Graphics2D g2 = image.createGraphics();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    
+            // 创建颜色集合，使用java.awt包下的类
+            Color[] colors = new Color[5];
+            Color[] colorSpaces = new Color[]{Color.WHITE, Color.CYAN,
+                    Color.GRAY, Color.LIGHT_GRAY, Color.MAGENTA, Color.ORANGE,
+                    Color.PINK, Color.YELLOW};
+            float[] fractions = new float[colors.length];
+            for (int i = 0; i < colors.length; i++) {
+                colors[i] = colorSpaces[rand.nextInt(colorSpaces.length)];
+                fractions[i] = rand.nextFloat();
+            }
+            Arrays.sort(fractions);
+            // 设置边框色
+            g2.setColor(Color.GRAY);
+            g2.fillRect(0, 0, w, h);
+    
+            Color c = getRandColor(200, 250);
+            // 设置背景色
+            g2.setColor(c);
+            g2.fillRect(0, 2, w, h - 4);
+    
+            // 绘制干扰线
+            Random random = new Random();
+            // 设置线条的颜色
+            g2.setColor(getRandColor(160, 200));
+            for (int i = 0; i < 20; i++) {
+                int x = random.nextInt(w - 1);
+                int y = random.nextInt(h - 1);
+                int xl = random.nextInt(6) + 1;
+                int yl = random.nextInt(12) + 1;
+                g2.drawLine(x, y, x + xl + 40, y + yl + 20);
+            }
+    
+            // 添加噪点
+            // 噪声率
+            float yawpRate = 0.05f;
+            int area = (int) (yawpRate * w * h);
+            for (int i = 0; i < area; i++) {
+                int x = random.nextInt(w);
+                int y = random.nextInt(h);
+                // 获取随机颜色
+                int rgb = getRandomIntColor();
+                image.setRGB(x, y, rgb);
+            }
+            // 添加图片扭曲
+            shear(g2, w, h, c);
+    
+            g2.setColor(getRandColor(100, 160));
+            int fontSize = h - 4;
+            Font font = new Font("Algerian", Font.ITALIC, fontSize);
+            g2.setFont(font);
+            char[] chars = code.toCharArray();
+            for (int i = 0; i < verifySize; i++) {
+                AffineTransform affine = new AffineTransform();
+                affine.setToRotation(Math.PI / 4 * rand.nextDouble() * (rand.nextBoolean() ? 1 : -1), (w / verifySize) * i + fontSize / 2, h / 2);
+                g2.setTransform(affine);
+                g2.drawChars(chars, i, 1, ((w - 10) / verifySize) * i + 5, h / 2 + fontSize / 2 - 10);
+            }
+    
+            g2.dispose();
+            ImageIO.write(image, "jpg", os);
+        }
+    
+        /**
+         * 随机颜色
+         *
+         * @param fc
+         * @param bc
+         * @return
+         */
+        private static Color getRandColor(int fc, int bc) {
+            if (fc > 255) {
+                fc = 255;
+            }
+            if (bc > 255) {
+                bc = 255;
+            }
+            int r = fc + random.nextInt(bc - fc);
+            int g = fc + random.nextInt(bc - fc);
+            int b = fc + random.nextInt(bc - fc);
+            return new Color(r, g, b);
+        }
+    
+        private static int getRandomIntColor() {
+            int[] rgb = getRandomRgb();
+            int color = 0;
+            for (int c : rgb) {
+                color = color << 8;
+                color = color | c;
+            }
+            return color;
+        }
+    
+        private static int[] getRandomRgb() {
+            int[] rgb = new int[3];
+            for (int i = 0; i < 3; i++) {
+                rgb[i] = random.nextInt(255);
+            }
+            return rgb;
+        }
+    
+        private static void shear(Graphics g, int w1, int h1, Color color) {
+            shearX(g, w1, h1, color);
+            shearY(g, w1, h1, color);
+        }
+    
+        private static void shearX(Graphics g, int w1, int h1, Color color) {
+    
+            int period = random.nextInt(2);
+    
+            boolean borderGap = true;
+            int frames = 1;
+            int phase = random.nextInt(2);
+    
+            for (int i = 0; i < h1; i++) {
+                double d = (double) (period >> 1)
+                        * Math.sin((double) i / (double) period
+                        + (6.2831853071795862D * (double) phase)
+                        / (double) frames);
+                g.copyArea(0, i, w1, 1, (int) d, 0);
+                if (borderGap) {
+                    g.setColor(color);
+                    g.drawLine((int) d, i, 0, i);
+                    g.drawLine((int) d + w1, i, w1, i);
+                }
+            }
+    
+        }
+    
+        private static void shearY(Graphics g, int w1, int h1, Color color) {
+    
+            int period = random.nextInt(40) + 10; // 50;
+    
+            boolean borderGap = true;
+            int frames = 20;
+            int phase = 7;
+            for (int i = 0; i < w1; i++) {
+                double d = (double) (period >> 1)
+                        * Math.sin((double) i / (double) period
+                        + (6.2831853071795862D * (double) phase)
+                        / (double) frames);
+                g.copyArea(i, 0, 1, h1, 0, (int) d);
+                if (borderGap) {
+                    g.setColor(color);
+                    g.drawLine(i, (int) d, i, 0);
+                    g.drawLine(i, (int) d + h1, i, h1);
+                }
+    
+            }
+    
+        }
+    }
+    
+    
+    ```
+
+- **Bean类创建：User类**
+
+  - 主要是用来进行与数据库tb_user的调用和使用的
+
+  - 存放在pojo目录下
+
+  - ```java
+    package com.itheima.pojo;
+    
+    public class User {
+        private Integer id;
+        private String username;
+        private String password;
+    
+        public Integer getId() {
+            return id;
+        }
+    
+        public void setId(Integer id) {
+            this.id = id;
+        }
+    
+        public String getUsername() {
+            return username;
+        }
+    
+        public void setUsername(String username) {
+            this.username = username;
+        }
+    
+        public String getPassword() {
+            return password;
+        }
+    
+        public void setPassword(String password) {
+            this.password = password;
+        }
+    
+        @Override
+        public String toString() {
+            return "User{" +
+                    "id=" + id +
+                    ", username='" + username + '\'' +
+                    ", password='" + password + '\'' +
+                    '}';
+        }
+    }
+    
+    ```
+
+- **Mapper类**
+
+  - **`UserMapper.java（接口类）`**
+
+    - 用于创建操作数据库的方法和Statement语句
+
+    - 存放在Java/com/itheima/mapper中
+
+    - ```java
+      package com.itheima.mapper;
+      
+      import com.itheima.pojo.User;
+      import org.apache.ibatis.annotations.Insert;
+      import org.apache.ibatis.annotations.Param;
+      import org.apache.ibatis.annotations.Select;
+      
+      public interface UserMapper {
+      }
+      
+      ```
+
+    
+
+  - **`UserMapper.xml`**
+
+    - 用于匹配UserMapper生成的class对象
+
+    - 存放在resources/com/itheima/mapper中
+
+    - ```xml
+      <?xml version="1.0" encoding="ISO-8859-1"?>
+      
+      <!DOCTYPE mapper
+              PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+              "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+      <mapper namespace="com.itheima.mapper.UserMapper">
+      
+      
+      </mapper>
+      ```
+
+
+
+- Web页面
+
+  - `login.jsp`
+
+    - 登录页面，存放在webapp中
+
+    - 页面的功能，可以在浏览器中进行填写信息和点击**记住我**的功能 -> **基于Cookies**
+
+    - 注意点：
+
+      - form提交的表格的地址，要对应WebServlet中的url
+      - `remeber`的标签需要设置value的值
+      - cookies在页面中调用`${cookie.xxxx.value}`就能够在页面中动态获取值， xxxx表示之前我们设置进去cookie的变量名
+
+    - ```jsp
+      <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+      <!DOCTYPE html>
+      <html lang="en">
+      
+      <head>
+          <meta charset="UTF-8">
+          <title>login</title>
+          <link href="css/login.css" rel="stylesheet">
+      </head>
+      
+      <body>
+      <div id="loginDiv" style="height: 350px">
+          <form action="/JSPDemo/loginServlet" method="post" id="form">
+              <h1 id="loginMsg">LOGIN IN</h1>
+              <div id="errorMsg">${login_msg} ${register_msg}</div>
+              <p>Username:<input id="username" name="username" type="text" value="${cookie.username.value}"></p>
+              <p>Password:<input id="password" name="password" type="password" value="${cookie.password.value}"></p>
+              <p>Remember:<input id="remember" name="remember" value="1" type="checkbox"></p>
+              <div id="subDiv">
+                  <input type="submit" class="button" value="login up">
+                  <input type="reset" class="button" value="reset">&nbsp;&nbsp;&nbsp;
+                  <a href="register.jsp">没有账号？</a>
+              </div>
+          </form>
+      </div>
+      </body>
+      </html>
+      ```
+
+    
+
+  - `register.jsp`
+
+    - 注册页面，存放在webapp中
+
+    - 页面功能，可以进行用户的注册，注册中需要填写验证码，校验成功后比对用户名是否存在，不存在就可以顺利保存。 -> 验证码的校验**基于 Session**
+
+    - 注意点
+
+      - 点击看不清之后的图片刷新：通过Javascript的点击事件绑定按钮，通过Webservlet绑定的生成随机验证码的插件，来刷新图片，url后面拼接了当前的时间`new Date().getMilliseconds();`
+
+        - ```javascript
+          <script>
+            document.getElementById("changeImg").onclick = function () {
+              //路径后面添加时间戳的目的是避免浏览器进行缓存静态资源
+              document.getElementById("checkCodeImg").src = "/JSPDemo/checkCodeServlet?"+new Date().getMilliseconds();
+            }
+          </script>
+          ```
+
+    - ```jsp
+      <%@ page contentType="text/html;charset=UTF-8" language="java"  isELIgnored="false" %>
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <title>欢迎注册</title>
+        <link href="css/register.css" rel="stylesheet">
+      </head>
+      <body>
+      <div class="form-div">
+        <div class="reg-content">
+          <h1>欢迎注册</h1>
+          <span>已有帐号？</span> <a href="login.html">登录</a>
+        </div>
+        <form id="reg-form" action="/JSPDemo/registerServlet" method="post">
+          <table>
+            <tr>
+              <td>用户名</td>
+              <td class="inputs">
+                <input name="username" type="text" id="username">
+                <br>
+                <span id="username_err" class="err_msg">${register_msg}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>密码</td>
+              <td class="inputs">
+                <input name="password" type="password" id="password">
+                <br>
+                <span id="password_err" class="err_msg" style="display: none">密码格式有误</span>
+              </td>
+            </tr>
+            <tr>
+              <td>验证码</td>
+              <td class="inputs">
+                <input name="checkCode" type="text" id="checkCode">
+                <img id="checkCodeImg" src="/JSPDemo/checkCodeServlet">
+                <a href="#" id="changeImg" >看不清？</a>
+              </td>
+            </tr>
+          </table>
+          <div class="buttons">
+            <input value="注 册" type="submit" id="reg_btn">
+          </div>
+          <br class="clear">
+        </form>
+      </div>
+      
+      <script>
+        document.getElementById("changeImg").onclick = function () {
+          //路径后面添加时间戳的目的是避免浏览器进行缓存静态资源
+          document.getElementById("checkCodeImg").src = "/JSPDemo/checkCodeServlet?"+new Date().getMilliseconds();
+        }
+      </script>
+      
+      </body>
+      </html>
+      ```
+
+
+
+#### **案例编译**
+
+基于MVC开发模式，DAO层我们已经编写完毕，现在就差Service层和Web层需要开发，按照开发流程，我们先完善
+
+**1.Service的开发**
+
+- 定义一个UserService的方法
+
+  - 调用sqlSession对象来操作Mysql
+  - 获取mapper对象的相关操作方法
+  - 涉及增删改的需要提交事务
+
+- ```java
+  package com.itheima.service;
+  
+  
+  import com.itheima.mapper.UserMapper;
+  import com.itheima.pojo.User;
+  import com.itheima.util.SqlSessionFactoryUtils;
+  import org.apache.ibatis.session.SqlSession;
+  import org.apache.ibatis.session.SqlSessionFactory;
+  
+  import java.util.List;
+  
+  public class UserService {
+      //1.使用工具类获取SqlSessionFactory
+      SqlSessionFactory factory = SqlSessionFactoryUtils.getSqlSessionFactory();
+      /**
+       * 登录方法
+       * @param username
+       * @param password
+       * @return
+       */
+      public User login(String username, String password){
+          //2. 获取SqlSession
+          SqlSession sqlSession = factory.openSession();
+          //3. 获取UserMapper
+          UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+          //4. 调用方法
+          User user = mapper.select(username, password);
+          //释放资源
+          sqlSession.close();
+  
+          return  user;
+      }
+  
+      public boolean register(User user){
+          //2. 获取SqlSession
+          SqlSession sqlSession = factory.openSession();
+          //3. 获取UserMapper
+          UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+          //4. 判断用户名是否存在
+          User u = mapper.selectByUsername(user.getUsername());
+  
+          if(u == null){
+              // 用户名不存在，注册
+              mapper.add(user);
+              sqlSession.commit();
+          }
+          sqlSession.close();
+  
+          return u == null;
+  
+      }
+  }
+  
+  ```
+
+
+
+
+
+**2.Web的开发**
+
+有两个需求页面，所以我们定义两个Servlet类，来分别实现逻辑功能
+
+- **`loginServlet.java`**
+
+  - 功能：
+
+    - 创建与Service的连接
+    - 获取Post请求传递给服务端的参数，如果账号密码在数据库查得到，就登录成功，并跳转到brand页面
+    - 登录成功后查看是否有选择”记住我“，如果有，就将账号密码存储在cookies中
+    - 如果查不到就返回登录失败等错误信息
+
+  - ```java
+    package com.itheima.web;
+    
+    import com.itheima.pojo.User;
+    import com.itheima.service.UserService;
+    
+    import javax.servlet.ServletException;
+    import javax.servlet.annotation.WebServlet;
+    import javax.servlet.http.*;
+    import java.io.IOException;
+    
+    @WebServlet("/loginServlet")
+    public class loginServlet extends HttpServlet {
+        private UserService service = new UserService();
+    
+        @Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            //1. 获取用户名和密码
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            //获取复选框数据
+            String remember = request.getParameter("remember");
+    
+            //2. 调用service查询
+            User user = service.login(username, password);
+    
+            //3. 判断
+            if(user != null){
+                //判断用户是否勾选记住我，字符串写前面是为了避免出现空指针异常
+                if("1".equals(remember)){
+                    //勾选了，发送Cookie
+                    //1. 创建Cookie对象
+                    Cookie c_username = new Cookie("username",username);
+                    Cookie c_password = new Cookie("password",password);
+                    // 设置Cookie的存活时间
+                    c_username.setMaxAge( 60 * 60 * 24 * 7);
+                    c_password.setMaxAge( 60 * 60 * 24 * 7);
+                    //2. 发送
+                    response.addCookie(c_username);
+                    response.addCookie(c_password);
+                }
+    
+                //登录成功，跳转到查询所有的BrandServlet
+    
+                //将登陆成功后的user对象，存储到session
+                HttpSession session = request.getSession();
+                session.setAttribute("user",user);
+    
+                String contextPath = request.getContextPath();
+                response.sendRedirect(contextPath+"/selectAllServlet");
+            }else {
+                // 登录失败,
+                // 存储错误信息到request
+                request.setAttribute("login_msg","用户名或密码错误");
+                // 跳转到login.jsp
+                request.getRequestDispatcher("/login.jsp").forward(request,response);
+    
+            }
+        }
+    
+        @Override
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            this.doGet(request, response);
+        }
+    }
+    
+    ```
+
+    
+
+- **`registerServlet.java`**
+
+  - 需求
+
+    - 创建与Service的连接
+    - 获取Post请求传递给服务端的参数，
+    - 同时调用session中的验证码正确答案，与用户输入的进行比对
+    - 如果验证码与随机生成的验证成功，就进入账号是否唯一的判断；如果不成功，返回报错信息，重新回到注册页面
+    - 账号唯一，注册成功，写入数据库
+    - 账号不唯一，返回报错信息
+
+  - ```java
+    package com.itheima.web;
+    
+    import com.itheima.pojo.User;
+    import com.itheima.service.UserService;
+    
+    import javax.servlet.ServletException;
+    import javax.servlet.annotation.WebServlet;
+    import javax.servlet.http.HttpServlet;
+    import javax.servlet.http.HttpServletRequest;
+    import javax.servlet.http.HttpServletResponse;
+    import javax.servlet.http.HttpSession;
+    import java.io.IOException;
+    
+    @WebServlet("/registerServlet")
+    public class RegisterServlet extends HttpServlet {
+        private UserService service = new UserService();
+    
+        @Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            //1. 获取用户名和密码数据
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+    
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+    
+            // 获取用户输入的验证码
+            String checkCode = request.getParameter("checkCode");
+    
+            // 程序生成的验证码，从Session获取
+            HttpSession session = request.getSession();
+            String checkCodeGen = (String) session.getAttribute("checkCodeGen");
+    
+            // 比对
+            if(!checkCodeGen.equalsIgnoreCase(checkCode)){
+    
+                request.setAttribute("register_msg","验证码错误");
+                request.getRequestDispatcher("/register.jsp").forward(request,response);
+    
+                // 不允许注册
+                return;
+            }
+    
+    
+            //2. 调用service 注册
+            boolean flag = service.register(user);
+            //3. 判断注册成功与否
+            if(flag){
+                //注册功能，跳转登陆页面
+                request.setAttribute("register_msg","注册成功，请登录");
+                request.getRequestDispatcher("/login.jsp").forward(request,response);
+            }else {
+                //注册失败，跳转到注册页面
+    
+                request.setAttribute("register_msg","用户名已存在");
+                request.getRequestDispatcher("/register.jsp").forward(request,response);
+            }
+    
+    
+        }
+    
+        @Override
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            this.doGet(request, response);
+        }
+    }
+    ```
+
+
+
+又因为验证码的展示需要src绑定url，所以需要再定义一个类来展示验证码的图片
+
+**`CheckCodeServlet`**
+
+- 需求
+
+  - 调用插件CheckCodeUtil的生成验证码方法`outputVerifyImage`生成图像和答案
+  - 将答案写入Session中
+
+- ```java
+  package com.itheima.web;
+  
+  
+  
+  import com.itheima.util.CheckCodeUtil;
+  
+  import javax.servlet.ServletException;
+  import javax.servlet.ServletOutputStream;
+  import javax.servlet.annotation.WebServlet;
+  import javax.servlet.http.HttpServlet;
+  import javax.servlet.http.HttpServletRequest;
+  import javax.servlet.http.HttpServletResponse;
+  import javax.servlet.http.HttpSession;
+  import java.io.IOException;
+  
+  
+  @WebServlet("/checkCodeServlet")
+  public class CheckCodeServlet extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          // 生成验证码
+          ServletOutputStream os = resp.getOutputStream();
+          String checkCode = CheckCodeUtil.outputVerifyImage(100, 50, os, 4);
+  
+          // 存入Session
+          HttpSession session = req.getSession();
+          session.setAttribute("checkCodeGen",checkCode);
+  
+      }
+  
+      @Override
+      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          this.doGet(req, resp);
+      }
+  }
+  
+  ```
