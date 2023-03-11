@@ -1768,3 +1768,204 @@ run起来就可以通过页面的访问来操作数据库了。
   }
   
   ```
+
+
+
+-----
+
+### 根据学到的web第二、第三个组件进行案例修正
+
+- 第二个组件是：
+
+### Filter - 过滤器
+
+- 当我们访问一些指定的路径的时候，如果设置了过滤器，就会执行过滤器之中的代码逻辑
+- 可用于访问某些比较需要安全性的网址的时候，设置过滤器，判断是否满足条件，不满足我们就不放行，满足就可以放行
+
+
+
+- 第三个组件是：
+
+### **Listener - 监听器**
+
+- 在项目开启的时候，就默认执行的，就是监听器，一般有8种方法，后续再深度研究，主要是Servlet ContextListener，中的初始化方法，可以在项目开始的时候执行里面的代码块
+
+
+
+### Ajax
+
+我的理解是，使用Ajax的时候，不需要页面刷新，也可以获取服务端的资源
+
+Ajax其实是JS中的一种框架，一种应用模式，通过js的相关代码可以实现很多效果
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎注册</title>
+    <link href="css/register.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="form-div">
+    <div class="reg-content">
+        <h1>欢迎注册</h1>
+        <span>已有帐号？</span> <a href="login.html">登录</a>
+    </div>
+    <form id="reg-form" action="#" method="get">
+
+        <table>
+
+            <tr>
+                <td>用户名</td>
+                <td class="inputs">
+                    <input name="username" type="text" id="username">
+                    <br>
+                    <span id="username_err" class="err_msg" style="display: none">用户名不太受欢迎</span>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>密码</td>
+                <td class="inputs">
+                    <input name="password" type="password" id="password">
+                    <br>
+                    <span id="password_err" class="err_msg" style="display: none">密码格式有误</span>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>验证码</td>
+                <td class="inputs">
+                    <input name="checkCode" type="text" id="checkCode">
+                    <img src="imgs/a.jpg">
+                    <a href="#" id="changeImg">看不清？</a>
+                </td>
+            </tr>
+
+        </table>
+
+        <div class="buttons">
+            <input value="注 册" type="submit" id="reg_btn">
+        </div>
+        <br class="clear">
+    </form>
+
+</div>
+</body>
+
+<script>
+    // 1. 给用户名输入框绑定 失去焦点的事件 onblur
+    document.getElementById("username").onblur = function (){
+
+        // 2 发送ajax请求
+        var username = this.value;
+
+        // 2.1
+        var xhttp;
+        if (window.XMLHttpRequest){
+            xhttp = new XMLHttpRequest();
+        }else {
+            xhttp = new ActiveXObject("Microsoft.XMLHTTP")
+        }
+        // 2.2
+        xhttp.open("GET", "http://localhost:8080/JSPDemo/selectUserServlet?username="+username)
+        xhttp.send();
+
+        // 2.3 获取响应
+        xhttp.onreadystatechange = function (){
+            if(this.readyState == 4 && this.state == 200){
+                // 上面这个判断就是 当页面全部加载完成且状态码是200的时候
+                // 判断
+                if(this.responseText == "true"){
+                    // 用户名存在，显示提示信息
+                    document.getElementById("username_err").style.display = '';
+                }else {
+                    // 用户名不存在，清除提示信息
+                    document.getElementById("username_err").style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+</html>
+```
+
+基于Ajax的语法，可以引入JS已经写好的包 - `Axios` 会更容易进行Ajax的编写
+
+
+
+### Axios
+
+- 引入
+
+- ```html
+  <script src="js/axios-0.18.0.js"></script>
+  ```
+
+- 发送 get 请求
+
+  ```js
+  axios({
+      method:"get",
+      url:"http://localhost:8080/ajax-demo1/aJAXDemo1?username=zhangsan"
+  }).then(function (resp){
+      alert(resp.data);
+  })
+  ```
+
+- 发送 post 请求
+
+  ```js
+  axios({
+      method:"post",
+      url:"http://localhost:8080/ajax-demo1/aJAXDemo1",
+      data:"username=zhangsan"
+  }).then(function (resp){
+      alert(resp.data);
+  });
+  ```
+
+`axios()` 是用来发送异步请求的，小括号中使用 js 对象传递请求相关的参数：
+
+* `method` 属性：用来设置请求方式的。取值为 `get` 或者 `post`。
+* `url` 属性：用来书写请求的资源路径。如果是 `get` 请求，需要将请求参数拼接到路径的后面，格式为： `url?参数名=参数值&参数名2=参数值2`。
+* `data` 属性：作为请求体被发送的数据。也就是说如果是 `post` 请求的话，数据需要作为 `data` 属性的值。
+
+`then()` 需要传递一个匿名函数。我们将 `then()` 中传递的匿名函数称为 ==回调函数==，意思是该匿名函数在发送请求时不会被调用，而是在成功响应后调用的函数。而该回调函数中的 `resp` 参数是对响应的数据进行封装的对象，通过 `resp.data` 可以获取到响应的数据。
+
+
+
+### Json
+
+用于和后端服务端进行数据交互
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1. 定义JSON字符串
+    var jsonStr = '{"name":"zhangsan","age":23,"addr":["北京","上海","西安"]}'
+    alert(jsonStr);
+
+</script>
+</body>
+</html>
+```
+
+现在我们需要获取到该 `JSON` 串中的 `name` 属性值，应该怎么处理呢？
+
+如果它是一个 js 对象，我们就可以通过 `js对象.属性名` 的方式来获取数据。JS 提供了一个对象 `JSON` ，该对象有如下两个方法：
+
+* `parse(str)` ：将 JSON串转换为 js 对象。使用方式是： ==`var jsObject = JSON.parse(jsonStr);`==
+* `stringify(obj)` ：将 js 对象转换为 JSON 串。使用方式是：==`var jsonStr = JSON.stringify(jsObject)`==
+
