@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Test-3-annotation_bean" />
+        <module name="Test-5-annotation_datasource" />
+        <module name="Test-6-Spring_MyBatis" />
+        <module name="Test-9-transfer-demo" />
+        <module name="Test-10-transfer-demo2" />
+        <module name="Test-4-annotation_config" />
+        <module name="Test-7-AOP-demo" />
+        <module name="Test-8-Aop-Around-demo" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Test-1-IOCAndDI" target="1.5" />
+      <module name="Test-2-DateSource" target="1.5" />
+      <module name="Test-5-autowired" target="1.5" />
+      <module name="Test-BeanConfiguration" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

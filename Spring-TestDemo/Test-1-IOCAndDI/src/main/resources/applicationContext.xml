@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    bean属性配置：1. 别名 => name="xxxx"
+                     2. 作用域 => scope="singleton"默认 / "prototype" 单例/多例 不同在于在main方法里运行的时候，对象是否唯一。-->
+
+<!--        bean实例化（Bean的本质就是对象）： 1. 构造方法实例化 =>  利用无参构造，就可以用bean绑定；无参构造可以默认不生成，但是如果只存在了有参构造就会报错-->
+<!--                    2. 工厂方法实例化 =>           -->
+
+<!--    bean生命周期：
+                   1.init 和 destroy-->
+<!--               在bean类书写两种方法，并在bean配置中进行配置，init-method 和 destroy-method 就可以运行init和destroy方法里面的东西
+                   2. 实现接口 InitializingBean, DisposableBean 并实现方法afterPropertiesSet() 和 destroy() 也可以执行生命周期方法
+
+                   3. destroy方法，需要手动关闭xtc.close()或配置关闭钩子函数xtc.registerShutdownHook()，才能使得destroy方法被执行。-->
+
+<!--        bean依赖注入（DI配置）： bean的绑定类型可以是引用类型（也就是我们自定义的bean类） /基本数据类型（string/int。。。）-->
+<!--            依赖注入有两种方式：1. setter注入-->
+<!--                                如果是引用数据类型 就property ref="类名"-->
+<!--                                如果是基本数据类型 就property value="" 输入传递的值-->
+<!--                             2. 构造方法注入-->
+<!--                                如果是引用数据类型 就constructor-arg name="xxxx" ref="xxx"-->
+<!--                                如果是基本数据类型 就constructor-arg  name="xxxx" value="xxx" 输入传递的值-->
+<!--            注意： 如果我们有参数顺序或多个参数需要传递，就需要用type或index来让bean知道我们的value是传递给谁的-> 因为value传递的时候无关顺序-->
+
+
+<!--            bean 依赖注入自动装配：-->
+<!--                1. 配置属性autowire 就可以实现自动装配-->
+<!--                2. 装配只能给引用数据类型使用 且bean类的名称需要唯一 自动装配优先级低于setter注入与构造器注入，同时出现时自动装配配置失效-->
+
+            注入也可以是集合类型的，相关操作看readme.md
+
+
+<!--    1. 绑定bean类-->
+
+    <bean id="bookService" name="service" class="com.itheima.service.serviceImpl.BookServiceImpl">
+<!--        2. 书写property标签来进行DI绑定-->
+<!--        其中 name指的是在BookServiceImpl中的私有成员变量，且需要给set方法； ref指的是成员变量的类对应的bean类-->
+        <property name="bookDao" ref="bookDao"></property>
+    </bean>
+    <bean id="bookDao" class="com.itheima.dao.daoImp.BookDaoImpl"></bean>
+
+</beans>
