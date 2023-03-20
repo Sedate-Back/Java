@@ -1,0 +1,6 @@
+com\itheima\controller\UserController.class
+com\itheima\domain\User.class
+com\itheima\config\ServletContainersInitConfig.class
+com\itheima\controller\UserRestfulController.class
+com\itheima\domain\Address.class
+com\itheima\config\SpringMvcConfig.class

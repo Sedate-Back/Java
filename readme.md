@@ -10,9 +10,13 @@
 
 **AdvancedCode**: 用来记录日常学习的笔记和代码，算是比较进阶的Java语法内容
 
+**apache-tomcat-8..** ： Tomcat框架源码
+
+**brand-case** ： 基于Maven架构创建的Tomcat服务架构的前后端交互案例，前端包含elementui，vue和Axios，后端是MVC和servlet架构
+
 **Demo\_2** :存储黑马管理系统的源代码，只创建了学生类，基础的框架待完善
 
-***JSPDemo**： 通过JSP，MSV模式，进行前端数据展示、操作和后端数据调用、效应小案例
+***JSPDemo**： 通过JSP，MVC模式，进行前端数据展示、操作和后端数据调用、效应小案例
 
 **key_knowledge**: 存储面试资料和简历模板
 
@@ -20,21 +24,25 @@
 
 **MavenDemo1**: 存储mybatis入门案例和操作、笔记
 
+**Spring-TestDemo**： Spring的知识点应用，包括Spring的创建、Bean类、运用注解进行配置
+
 **test**：用于测试maven创建项目的方式和结构
 
 **TomCatMavenDemo**：基于TomCat创建一个简单的服务栈
 
 **TomCatMavenEasyDemo**：存储Tomcat项目和案例代码，包括http请求、请求头、体等
 
+
+
 ----
 ### 学习日记与计划
-上一次学习时间： 2023年3月8号
+上一次学习时间： 2023年3月19号
 
-**进度**：第二阶段 09、第九章 请求和响应
+**进度**：第三阶段 热门框架 03、SpringBoot
 
 ​			
 
-**学习计划**：学习第二阶段
+**学习计划**：学习第三阶段
 
 **复习计划**：利用空余时间看文档和代码及其注释 加深对高阶模块的理解和运用
 
