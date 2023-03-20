@@ -6,15 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springboot-01-quickstart" />
+        <module name="SpringBoot-01-Mvc" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="SpringBoot-01-Mvc" target="1.8" />
       <module name="springboot-01-quickstart" target="1.8" />
+      <module name="SpringBoot-01-quickstart" target="1.5" />
+      <module name="SpringBoot-02-Mvc" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SpringBoot-01-Mvc" options="-parameters" />
       <module name="springboot-01-quickstart" options="-parameters" />
     </option>
   </component>

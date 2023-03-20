@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-01-Mvc/SpringBoot-01-Mvc.iml" filepath="$PROJECT_DIR$/SpringBoot-01-Mvc/SpringBoot-01-Mvc.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringBoot-TestDemo.iml" filepath="$PROJECT_DIR$/SpringBoot-TestDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot-01-quickstart/springboot-01-quickstart.iml" filepath="$PROJECT_DIR$/springboot-01-quickstart/springboot-01-quickstart.iml" />
     </modules>
   </component>
 </project>
