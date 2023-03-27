@@ -54,7 +54,7 @@ under the License.
   -->
 
   <!-- localRepository  个人配置 -->
-  <localRepository>E:\java\Maven\apache-maven-3.6.1\mvn_resp</localRepository>
+  <localRepository>E:\java\Maven\maven-repository</localRepository>
 
 
   <!-- interactiveMode
@@ -134,21 +134,13 @@ under the License.
       <passphrase>optional; leave empty if not used.</passphrase>
     </server>
     -->
+  <!-- <server>
+  id任意，多个server的id不重复就行，后面会用到
+  <id>heima-nexus</id>
+  <username>admin</username>
+  <password>admin</password>填写自己nexus设定的登录秘密
+</server> -->
   </servers>
-  <profiles>    
-    <profile>  
-     <id>jdk-1.8</id>  
-     <activation>  
-         <activeByDefault>true</activeByDefault>  
-         <jdk>1.8</jdk>  
-     </activation>
-     <properties>
-         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-         <maven.compiler.source>1.8</maven.compiler.source>  
-         <maven.compiler.target>1.8</maven.compiler.target>   
-     </properties>   
-    </profile>
-  </profiles> 
   <!-- mirrors
    | This is a list of mirrors to be used in downloading artifacts from remote repositories.
    |
@@ -160,28 +152,40 @@ under the License.
    | repository, to be used as an alternate download site. The mirror site will be the preferred
    | server for that repository.
    |-->
-  <!-- <mirrors>
+  <mirrors> 
     <!-- mirror
      | Specifies a repository mirror site to use instead of a given repository. The repository that
      | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
      | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
-     |
-    <mirror>
+     |-->
+   <mirror>
       <id>mirrorId</id>
       <mirrorOf>repositoryId</mirrorOf>
       <name>Human Readable Name for this Mirror.</name>
       <url>http://my.repository.com/repo/path</url>
     </mirror>
-     -->
-  </mirrors> -->
+     
+    <mirror>
+    <id>alimaven</id>
+    <mirrorOf>central</mirrorOf>
+    <name>aliyun maven</name>
+    <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+    </mirror>
 
-  <mirror> 
-    <id>alimaven</id>  
-    <name>aliyun maven</name>  
-    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-    <mirrorOf>central</mirrorOf>    
-  </mirror>  
+     <!--<mirror>
+      <id>maven-default-http-blocker</id>
+      <mirrorOf>external:http:*</mirrorOf>
+      <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+      <url>http://0.0.0.0/</url>
+      <blocked>true</blocked>
+    </mirror>
 
+    <mirror>
+    <id>nexus-heima</id>
+    <mirrorOf>*</mirrorOf>
+    <url>http://localhost:8081/repository/maven-public/</url>
+    </mirror>  -->
+  </mirrors>
 
   <!-- profiles
    | This is a list of profiles which can be activated in a variety of ways, and which can modify
@@ -205,6 +209,19 @@ under the License.
    |
    |-->
   <profiles>
+    <profile>  
+     <id>jdk-1.8</id>  
+     <activation>  
+         <activeByDefault>true</activeByDefault>  
+         <jdk>1.8</jdk>  
+     </activation>
+     <properties>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+         <maven.compiler.source>1.8</maven.compiler.source>  
+         <maven.compiler.target>1.8</maven.compiler.target>
+         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>   
+     </properties>   
+    </profile>
     <!-- profile
      | Specifies a set of introductions to the build process, to be activated using one or more of the
      | mechanisms described above. For inheritance purposes, and to activate profiles via <activatedProfiles/>
