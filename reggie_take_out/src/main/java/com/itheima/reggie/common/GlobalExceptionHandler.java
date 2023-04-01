@@ -26,4 +26,11 @@ public class GlobalExceptionHandler {
         }
         return R.error("未知错误");
     }
+
+    // 异常处理方法 => 删除分类的时候有没有关联菜品或者套餐
+    @ExceptionHandler(CustomException.class)
+    public R<String> exceptionHandler(CustomException ex){
+        log.error(ex.getMessage());
+        return R.error(ex.getMessage());
+    }
 }

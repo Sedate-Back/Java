@@ -19,3 +19,6 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: ASSIGN_ID
+
+reggie:
+  path: E:/Java/reggie_take_out/src/images/
