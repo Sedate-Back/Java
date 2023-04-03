@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="test" />
+        <module name="TomCatMavenDemo" />
         <module name="test-maven" />
         <module name="TomCatMavenEasyDemo" />
+        <module name="RedisDemoTest" />
         <module name="MavenDemo1" />
-        <module name="test" />
         <module name="JSPDemo" />
-        <module name="TomCatMavenDemo" />
       </profile>
     </annotationProcessing>
   </component>
